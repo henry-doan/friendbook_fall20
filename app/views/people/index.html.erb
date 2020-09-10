@@ -1,2 +1,35 @@
-<h1>People#index</h1>
-<p>Find me in app/views/people/index.html.erb</p>
+<h1 class='ui header blueHeader'>People</h1>
+<br />
+<%= link_to "New Person", new_person_path %>
+
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Avatar</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @people.each do |person| %>
+      <tr>
+        <td data-label="First Name"><%= person.first_name %></td>
+        <td data-label="Last Name"><%= person.last_name %></td>
+        <td data-label="Avatar">
+          <img class="ui avatar image" src=<%= person.avatar %>>
+        </td>
+        <td data-label="Phone"><%= person.phone %></td>
+        <td data-label="Email"><%= person.email %></td>
+        <td data-label="Actions">
+          <%= link_to "Show", person_path(person) %>
+          <%= link_to "Edit", edit_person_path(person) %>
+          <%= link_to "Delete", person, method: :delete %>
+        </td>
+      </tr>
+      <% %>
+    <% end %>
+  </tbody>
+</table>
